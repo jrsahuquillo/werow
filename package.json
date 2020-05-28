@@ -1,0 +1,14 @@
+{
+  "name": "werow",
+  "version": "1.0.0",
+  "description": "Valencia Rowing Club App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jrsahuquillo (https://joseramonsahuquillo.com)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
