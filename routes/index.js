@@ -3,7 +3,9 @@ const router = express.Router();
 
 router.get('/api', (req, res) => {
   // res.send('Hello World!');
-  res.json({
+  res
+  .status(200)
+  .json({
     hello: 'World!'
   });
 });

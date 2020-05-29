@@ -1,0 +1,1 @@
+"use strict";describe("jest",function(){it("works!",function(){expect(!0).toBe(!0)})});
