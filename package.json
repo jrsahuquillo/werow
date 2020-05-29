@@ -2,8 +2,9 @@
   "name": "werow",
   "version": "1.0.0",
   "description": "Valencia Rowing Club App",
-  "main": "index.js",
+  "main": "start.js",
   "scripts": {
+    "dev": "node start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jrsahuquillo (https://joseramonsahuquillo.com)",

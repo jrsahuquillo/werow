@@ -1,0 +1,1 @@
+"use strict";var express=require("express"),router=express.Router();router.get("/api",function(e,r){r.json({hello:"World!"})}),module.exports=router;
