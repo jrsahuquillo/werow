@@ -4,7 +4,8 @@
   "description": "Valencia Rowing Club App",
   "main": "start.js",
   "scripts": {
-    "dev": "node start",
+    "dev": "nodemon start",
+    "start": "node start",
     "test": "jest"
   },
   "author": "jrsahuquillo (https://joseramonsahuquillo.com)",
@@ -13,6 +14,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4"
   }
 }
