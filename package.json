@@ -8,6 +8,10 @@
     "start": "node start",
     "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrsahuquillo/werow.git"
+  },
   "author": "jrsahuquillo (https://joseramonsahuquillo.com)",
   "license": "MIT",
   "dependencies": {
