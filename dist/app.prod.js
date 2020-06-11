@@ -1,1 +1,0 @@
-"use strict";var express=require("express"),bodyParser=require("body-parser"),app=express(),router=require("./routes");app.use(bodyParser.urlencoded({extended:!1})),app.use(bodyParser.json()),app.use("/",router),module.exports=app;

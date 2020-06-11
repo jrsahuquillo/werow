@@ -1,10 +1,22 @@
 version: '3.7'
 
 services:
-  app:
-    build: .
+  api:
+    build: api
     ports:
       - 8080:8080
     volumes:
-      - .:/app
+      - ./api:/api
+      -  /api/node_modules
+  
+  app:
+    build: app
+    ports:
+      - 3000:3000
+    command: ["npm", "run", "start"]
+    volumes:
+      - ./app:/app
       -  /app/node_modules
+    depends_on:
+      - api
+    stdin_open: true
