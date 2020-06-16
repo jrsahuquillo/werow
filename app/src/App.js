@@ -1,4 +1,5 @@
-import React,  {Component} from 'react';
+import React, {Component} from 'react';
+import { fetchHelloWorld }  from './fetchHelloWorld';
 
 class App extends Component {
   constructor(props) {
@@ -9,15 +10,12 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch('http://localhost:8080/api')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          item: json
-        })
-      });
+  async componentDidMount() {
+    const helloWorld = await fetchHelloWorld()
+    this.setState({
+      isLoaded: true,
+      item: helloWorld
+    })
   }
 
   render () {
@@ -25,14 +23,12 @@ class App extends Component {
     if(!isLoaded) {
       return <div>Loading...</div>;
     }
-    else {
-      return(
-        <div className="App">
-          hello: {item.hello}
-        </div>
-      )
-    }
-
+    
+    return(
+      <div className="App">
+        hello: {item.hello}
+      </div>
+    )
   }
 }
 
