@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useImperativeHandle} from 'react';
 import { fetchHelloWorld }  from './fetchHelloWorld';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
     }
   }
 
-  async componentDidMount() {
+  async handleClick() {
     const helloWorld = await fetchHelloWorld()
     this.setState({
       isLoaded: true,
@@ -18,15 +18,21 @@ class App extends Component {
     })
   }
 
-  render () {
+  renderMessage() {
     const { isLoaded, item } = this.state;
     if(!isLoaded) {
-      return <div>Loading...</div>;
+      return( <div>Loading...</div>)
     }
-    
+    return(
+      <p>hello: {item.hello}</p>
+    )
+  }
+
+  render () {
     return(
       <div className="App">
-        hello: {item.hello}
+      <button onClick={ async () => {await this.handleClick()} }>Click me!</button>
+        { this.renderMessage() }
       </div>
     )
   }

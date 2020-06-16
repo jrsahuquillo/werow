@@ -1,15 +1,28 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './App';
 import { fetchHelloWorld }  from './fetchHelloWorld';
 
 jest.mock('./fetchHelloWorld')
 
-test('renders hello world', async () => {
+describe('App', () => {
   fetchHelloWorld.mockReturnValue(Promise.resolve({hello: 'World!'}))
 
-  const { findByText } = render(<App />);
+  it('doesnt renders hello world', () => {
+    render(<App />);
 
-  const element = await findByText(/hello/);
-  expect(element).toBeInTheDocument();
-});
+    const element = screen.queryByText(/hello/);
+    expect(element).not.toBeInTheDocument();
+  });
+
+  it('renders hello world when button is clicked', async () => {
+    render(<App />);
+
+    const button = screen.getByRole('button');
+    userEvent.click(button);
+
+    const element = await screen.findByText(/hello/);
+    expect(element).toBeInTheDocument();
+  });
+})
