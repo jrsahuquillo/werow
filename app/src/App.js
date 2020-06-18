@@ -1,4 +1,4 @@
-import React, {Component, useImperativeHandle} from 'react';
+import React, {Component} from 'react';
 import { fetchHelloWorld }  from './fetchHelloWorld';
 
 class App extends Component {
