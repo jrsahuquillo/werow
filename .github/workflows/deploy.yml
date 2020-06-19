@@ -6,7 +6,6 @@ on:
 
 jobs:
   build-api:
-    needs: test-api
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
