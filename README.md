@@ -1,1 +1,2 @@
-[![Api Workflow](https://github.com/jrsahuquillo/werow/workflows/api-workflow/badge.svg)](https://github.com/jrsahuquillo/werow/actions?query=workflow%3ABuild+branch%3Amaster)
+[![Api Workflow](https://github.com/jrsahuquillo/werow/workflows/api-workflow/badge.svg)](https://github.com/jrsahuquillo/werow/actions?query=workflow%3Aapi-workflow+branch%3Amaster+branch%3Amaster)
+[![App Workflow](https://github.com/jrsahuquillo/werow/workflows/app-workflow/badge.svg)](https://github.com/jrsahuquillo/werow/actions?query=workflow%3Aapp-workflow+branch%3Amaster+branch%3Amaster)
