@@ -1,3 +1,5 @@
+[![App Workflow](https://github.com/jrsahuquillo/werow/workflows/app-workflow/badge.svg)](https://github.com/jrsahuquillo/werow/actions?query=workflow%3Aapp-workflow+branch%3Amaster+branch%3Amaster)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
