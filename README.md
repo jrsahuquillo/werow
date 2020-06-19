@@ -1,1 +1,1 @@
-[![Actions Status](https://github.com/{owner}/{repo}/workflows/{workflow_name}/badge.svg)](https://github.com/{owner}/{repo}/actions)
+[![Build](https://github.com/jrsahuquillo/werow/workflows/Build/badge.svg)](https://github.com/jrsahuquillo/werow/actions?query=workflow%3ABuild+branch%3Amaster)
