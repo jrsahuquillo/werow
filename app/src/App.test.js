@@ -7,7 +7,7 @@ import { fetchHelloWorld }  from './fetchHelloWorld';
 jest.mock('./fetchHelloWorld')
 
 describe('App', () => {
-  fetchHelloWorld.mockReturnValue(Promise.resolve({hello: 'World!'}))
+  fetchHelloWorld.mockReturnValue(Promise.resolve({hello: 'World!!!'}))
 
   it('doesnt renders hello world', () => {
     render(<App />);
@@ -22,7 +22,7 @@ describe('App', () => {
     const button = screen.getByRole('button');
     userEvent.click(button);
 
-    const element = await screen.findByText("hello: World!");
+    const element = await screen.findByText("hello: World!!!");
     expect(element).toBeInTheDocument();
   });
 })
