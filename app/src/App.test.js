@@ -22,7 +22,7 @@ describe('App', () => {
     const button = screen.getByRole('button');
     userEvent.click(button);
 
-    const element = await screen.findByText(/hello/);
+    const element = await screen.findByText("hello: World!");
     expect(element).toBeInTheDocument();
   });
 })
