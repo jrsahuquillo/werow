@@ -21,3 +21,11 @@ jobs:
         cd app
         npm install
         npm test a
+
+  deploy-app:
+    needs: test-app
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lauches deploy hook in Netlify
+      run: curl -X POST -d {} https://api.netlify.com/build_hooks/5ef0d0d7f675d97f88ecb5f8
