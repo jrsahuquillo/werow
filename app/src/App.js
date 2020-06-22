@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { fetchHelloWorld }  from './fetchHelloWorld';
+import "./App.css"
+import logo from './logo.svg';
 
 class App extends Component {
   constructor(props) {
@@ -16,23 +18,31 @@ class App extends Component {
       isLoaded: true,
       item: helloWorld
     })
+    setTimeout(() => {
+      this.setState({
+        isLoaded: false
+      })
+    }, 1000);
   }
 
   renderMessage() {
     const { isLoaded, item } = this.state;
     if(!isLoaded) {
-      return( <div>Loading...</div>)
+      return(
+        <p>Click to say something to the World...</p>
+      )
     }
     return(
-      <p>hello: {item.hello}</p>
+      <h1>hello: {item.hello}</h1>
     )
   }
 
   render () {
     return(
       <div className="App">
-      <button onClick={ async () => {await this.handleClick()} }>Click me!</button>
-        { this.renderMessage() }
+        <img src={logo} className="App-logo" alt="logo" />
+        <div><button onClick={ async () => { await this.handleClick() } }>Click me!</button></div>
+        <div>{ this.renderMessage() }</div>
       </div>
     )
   }
