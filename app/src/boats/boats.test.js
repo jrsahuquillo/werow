@@ -20,4 +20,22 @@ describe('Boats', () => {
     expect(createdBoat).toBeInTheDocument();
 
   });
+
+  it('empties the form after submit', () => {
+    render(<Boats />);
+    const $name = screen.getByLabelText('Nombre');
+    const $rowers = screen.getByLabelText(/Remeras/);
+    const $helmsman = screen.getByLabelText(/Timonel/);
+    const button = screen.getByRole('button');
+
+    userEvent.type($name, 'name');
+    userEvent.type($rowers, "1");
+    userEvent.click($helmsman);
+    userEvent.click(button);
+
+    expect($name.value).toBe("");
+    expect($rowers.value).toBe("0");
+    expect($helmsman.checked).toBe(false);
+
+  });
 });

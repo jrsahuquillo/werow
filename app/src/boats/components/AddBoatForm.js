@@ -5,7 +5,7 @@ class AddBoatForm extends Component {
     super(props);
     this.state = {
       name: '',
-      rowers: '',
+      rowers: 0,
       helmsman: false
     };
   }
@@ -17,14 +17,23 @@ class AddBoatForm extends Component {
   handleInput = () => {
     this.setState({
       name: this.nameRef.current.value,
-      rowers: parseInt(this.rowersRef.current.value),
+      rowers: parseInt(this.rowersRef.current.value || 0),
       helmsman: this.helmsmanRef.current.checked
     })
   }
 
   handleSubmit = event => {
-    event.preventDefault()
-    this.props.onCreate(this.state)
+    event.preventDefault();
+    this.props.onCreate(this.state);
+    this.resetForm();
+  }
+
+  resetForm = () => {
+    this.setState({
+      name: '',
+      rowers: 0,
+      helmsman: false
+    })
   }
 
   render() {
@@ -40,6 +49,7 @@ class AddBoatForm extends Component {
               ref={this.nameRef}
               type="text"
               onChange={this.handleInput}
+              value={this.state.name}
             />
             <label htmlFor="name">Nombre</label>
           </div>
@@ -50,6 +60,7 @@ class AddBoatForm extends Component {
               ref={this.rowersRef}
               type="text"
               onChange={this.handleInput}
+              value={this.state.rowers}
             />
             <label htmlFor="rowers">Nº Remeras/os</label>
           </div>
@@ -62,6 +73,7 @@ class AddBoatForm extends Component {
               type="checkbox"
               id="helmsman"
               onChange={this.handleInput}
+              checked={this.state.helmsman}
             />
             <span>¿Timonel?</span>
           </label>
