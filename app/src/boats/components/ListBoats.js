@@ -12,6 +12,8 @@ function ListBoats(props) {
         </p>
       </li>
     })
+
+  if(!boats.length) return null;
   return(
     <ul className="collection">
       {listBoats}
