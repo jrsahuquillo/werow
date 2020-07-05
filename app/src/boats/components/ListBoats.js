@@ -7,8 +7,9 @@ function ListBoats(props) {
       return <li className="collection-item" key={i}>
         <p>
           {boat.name}
-          <span>({boat.rowers} remeros/as)</span>
-          <span> -> timonel ({boat.helmsman.toString()})</span>
+          <span> -> {boat.modality}</span>
+          <span>({boat.rowers} remeras/os)</span>
+          <span> -> Timonel ({boat.helmsman.toString()})</span>
         </p>
       </li>
     })

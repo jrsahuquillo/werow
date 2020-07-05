@@ -16,9 +16,8 @@ describe('Boats', () => {
     userEvent.click($helmsman);
     userEvent.click(button);
     
-    const createdBoat = screen.queryByText(/1 remeros\/as/)
+    const createdBoat = screen.queryByText(/1 remeras\/os/)
     expect(createdBoat).toBeInTheDocument();
-
   });
 
   it('empties the form after submit', () => {
@@ -34,8 +33,26 @@ describe('Boats', () => {
     userEvent.click(button);
 
     expect($name.value).toBe("");
-    expect($rowers.value).toBe("0");
+    expect($rowers.value).toBe("");
     expect($helmsman.checked).toBe(false);
-
   });
+
+  // it('keeps created boat after reload browser', () => {
+  //   render(<Boats />);
+  //   const $name = screen.getByLabelText('Nombre');
+  //   const $rowers = screen.getByLabelText(/Remeras/);
+  //   const $helmsman = screen.getByLabelText(/Timonel/);
+  //   const $modality = screen.getByDisplayValue("Banco Fijo");
+
+  //   const button = screen.getByRole('button');
+
+  //   userEvent.type($name, 'name');
+  //   userEvent.type($rowers, "1");
+  //   userEvent.click($helmsman);
+  //   userEvent.selectOptions($modality);
+  //   userEvent.click(button);
+
+
+  // });
+
 });
