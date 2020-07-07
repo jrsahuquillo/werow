@@ -81,7 +81,7 @@ class AddBoatForm extends Component {
           <div className="w-6/12 lg:w-3/12 px-3 relative">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="modality">Modalidad</label>
             <select ref={this.modalityRef} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={this.handleInput} value={this.state.modality}>
-              <option value="" disabled selected hidden>-</option>
+              <option value="" disabled defaultValue hidden>-</option>
               <option value="Banco Fijo">Banco Fijo</option>
               <option value="Banco Móvil">Banco Móvil</option>
             </select>
