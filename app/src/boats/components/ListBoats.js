@@ -16,9 +16,11 @@ function ListBoats(props) {
 
   if(!boats.length) return null;
   return(
-    <ul className="collection">
-      {listBoats}
-    </ul>
+    <div className="flex flex-col md:flex-row border-b border-gray-200"> 
+      <ul className="collection">
+        {listBoats}
+      </ul>
+    </div>
   )
 }
 

@@ -13,7 +13,7 @@ services:
     build: app
     ports:
       - 3000:3000
-    command: ["npm", "run", "start"]
+    command: ["npm", "run", "start:react"]
     volumes:
       - ./app:/app
       -  /app/node_modules

@@ -37,22 +37,22 @@ describe('Boats', () => {
     expect($helmsman.checked).toBe(false);
   });
 
-  // it('keeps created boat after reload browser', () => {
-  //   render(<Boats />);
-  //   const $name = screen.getByLabelText('Nombre');
-  //   const $rowers = screen.getByLabelText(/Remeras/);
-  //   const $helmsman = screen.getByLabelText(/Timonel/);
-  //   const $modality = screen.getByDisplayValue("Banco Fijo");
+  it('keeps created boat after reload browser', () => {
+    render(<Boats />);
+    const $name = screen.getByLabelText('Nombre');
+    const $rowers = screen.getByLabelText(/Remeras/);
+    const $helmsman = screen.getByLabelText(/Timonel/);
+    const button = screen.getByRole('button');
 
-  //   const button = screen.getByRole('button');
+    userEvent.type($name, 'name');
+    userEvent.type($rowers, "1");
+    userEvent.click($helmsman);
+    userEvent.click(button);
 
-  //   userEvent.type($name, 'name');
-  //   userEvent.type($rowers, "1");
-  //   userEvent.click($helmsman);
-  //   userEvent.selectOptions($modality);
-  //   userEvent.click(button);
+    rerender(<Boats />);
 
-
-  // });
+    const createdBoat = screen.queryByText(/1 remeras\/os/)
+    expect(createdBoat).toBeInTheDocument();
+  });
 
 });

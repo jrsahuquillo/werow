@@ -19,12 +19,12 @@ class Boats extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col s12 m6 boats">
-          <h4>Nueva Embarcación</h4>
+      <div className="p-2">
+        <div className="flex flex-col w-full md:flex-row">
+          <div className="w-64 font-bold text-gray-800">Nueva Embarcación</div>
           <AddBoatForm onCreate={this.createBoat} />
-          <ListBoats boats={this.state.boats} />
         </div>
+        <ListBoats boats={this.state.boats} />
       </div>
     );
   }

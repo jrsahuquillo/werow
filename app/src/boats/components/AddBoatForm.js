@@ -46,61 +46,67 @@ class AddBoatForm extends Component {
 
   render() {
     return (
+      
       <form id="add-boat-form"
         onSubmit={this.handleSubmit}
+          className="w-full"
       >
-        <div className="row">
-          <div className="input-field col s8">
+        <div className="flex flex-wrap">
+          <div className="w-8/12 lg:w-4/12 px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="name">Nombre</label>
             <input
               name="name"
               id="name"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               ref={this.nameRef}
               type="text"
               onChange={this.handleInput}
               value={this.state.name}
             />
-            <label htmlFor="name">Nombre</label>
           </div>
-          <div className="input-field col s4">
+            
+          <div className="w-4/12 lg:w-2/12 px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="rowers">Remeras/os</label>
             <input
               name="rowers"
               id="rowers"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               ref={this.rowersRef}
               type="text"
               onChange={this.handleInput}
               value={this.state.rowers}
             />
-            <label htmlFor="rowers">Nº Remeras/os</label>
           </div>
-        </div>
 
-        <div className="input-field row">
-          <div className="col s6">
-            <label htmlFor="modality">Modalidad</label>
-            <select ref={this.modalityRef} className="browser-default" onChange={this.handleInput} value={this.state.modality}>
-              <option value="Seleccionar modalidad" disabled defaultValue>Selecciona modalidad</option>
+          <div className="w-6/12 lg:w-3/12 px-3 relative">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="modality">Modalidad</label>
+            <select ref={this.modalityRef} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={this.handleInput} value={this.state.modality}>
+              <option value="" disabled selected hidden>-</option>
               <option value="Banco Fijo">Banco Fijo</option>
               <option value="Banco Móvil">Banco Móvil</option>
             </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-gray-700">
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+            </div>
           </div>
 
-          <div className="input-field col s4">
-            <label htmlFor="helmsman">
-              <input
-                name="helmsman"
-                ref={this.helmsmanRef}
-                type="checkbox"
-                id="helmsman"
-                onChange={this.handleInput}
-                checked={this.state.helmsman}
-              />
-              <span>¿Timonel?</span>
-            </label>
+          <div className="w-4/12 lg:w-1/12 px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="helmsman">¿Timonel?</label>
+            <input
+              name="helmsman"
+              ref={this.helmsmanRef}
+              type="checkbox"
+              id="helmsman"
+              onChange={this.handleInput}
+              checked={this.state.helmsman}
+            />  
           </div>
 
-          <button className="btn-floating btn-large waves-effect waves-light blue right" type="submit">
-            <i className="material-icons">add</i>
-          </button>
+          <div className="w-2/12 lg:w-2/12 p-5">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+              +
+            </button>
+          </div>
         </div>
       </form>
     )
