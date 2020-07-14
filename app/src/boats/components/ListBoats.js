@@ -4,8 +4,8 @@ function ListBoats({boats}) {
   const listBoats = boats.map((boat, i) =>
     {
       const needHelmsman = boat.helmsman;
-      const modality = boat.modality == "fijo" ? "Banco Fijo" : "Banco Móvil"
-      return <li className="collection-item pb-2" key={i} role="listitem">
+      const modality = boat.modality === "fijo" ? "Banco Fijo" : "Banco Móvil"
+      return <li className="collection-item pb-2" key={i}>
         <p>
           {boat.name}
           <span> -> {modality}</span>
