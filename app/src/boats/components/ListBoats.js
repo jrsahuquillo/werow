@@ -1,15 +1,14 @@
 import React from 'react';
 
-function ListBoats(props) {
-  const storedBoats = JSON.parse(localStorage.getItem("storedBoats"))
-  const boats = storedBoats || props.boats;
+function ListBoats({boats}) {
   const listBoats = boats.map((boat, i) =>
     {
       const needHelmsman = boat.helmsman;
-      return <li className="collection-item pb-2" key={i}>
+      const modality = boat.modality == "fijo" ? "Banco Fijo" : "Banco Móvil"
+      return <li className="collection-item pb-2" key={i} role="listitem">
         <p>
           {boat.name}
-          <span> -> {boat.modality}</span>
+          <span> -> {modality}</span>
           <span>( {boat.rowers} 👤 )</span>
           {needHelmsman ? (<span> -> Con Timonel</span>) : (<span> -> Sin Timonel</span>) }
         </p>

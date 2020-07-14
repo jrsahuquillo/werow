@@ -10,6 +10,12 @@ class Boats extends Component {
       boats: []
     }
   }
+  componentDidMount() {
+    const storedBoats = JSON.parse(localStorage.getItem("storedBoats")) || [];
+    this.setState({
+      boats: storedBoats
+    })
+  }
 
   createBoat = newBoat => {
     this.setState({

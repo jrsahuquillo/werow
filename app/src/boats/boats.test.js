@@ -8,18 +8,21 @@ describe('Boats', () => {
     render(<Boats />);
     const $name = screen.getByLabelText('Nombre');
     const $rowers = screen.getByLabelText(/Remeras/);
+    const $modality = screen.getByTestId('modality')
     const $helmsman = screen.getByLabelText(/Timonel/);
     const button = screen.getByRole('button');
 
-    userEvent.type($name, 'name');
+    userEvent.type($name, 'aName');
     userEvent.type($rowers, "1");
+    userEvent.selectOptions($modality, ["fijo"]);
     userEvent.click($helmsman);
     userEvent.click(button);
 
-    const createdBoat = screen.queryByText(/1 👤/)
-    expect(createdBoat).toBeInTheDocument();
-    const withHelmsman = screen.queryByText(/Con Timonel/)
-    expect(withHelmsman).toBeInTheDocument();
+    const boat = screen.getByRole("listitem")
+    expect(boat).toHaveTextContent("aName")
+    expect(boat).toHaveTextContent(/1 👤/)
+    expect(boat).toHaveTextContent("Banco Fijo")
+    expect(boat).toHaveTextContent(/Con Timonel/)
   });
 
   it('empties the form after submit', () => {
@@ -37,32 +40,6 @@ describe('Boats', () => {
     expect($name.value).toBe("");
     expect($rowers.value).toBe("");
     expect($helmsman.checked).toBe(false);
-  });
-
-  it('keeps created boat after reload browser', () => {
-    localStorage.clear();
-    render(<Boats />);
-    const $name = screen.getByLabelText('Nombre');
-    const $rowers = screen.getByLabelText(/Remeras/);
-    const $helmsman = screen.getByLabelText(/Timonel/);
-    const button = screen.getByRole('button');
-
-    userEvent.type($name, 'name');
-    userEvent.type($rowers, "2");
-    userEvent.click($helmsman);
-    userEvent.click(button);
-
-    // Reload browser??
-    const { location } = window;
-    delete window.location;
-    window.location = { reload: jest.fn() };
-    window.location.reload();
-
-    const createdBoat = screen.queryByText(/2 👤/)
-    expect(createdBoat).toBeInTheDocument();
-    const withHelmsman = screen.queryByText(/Con Timonel/)
-    expect(withHelmsman).toBeInTheDocument();
-
   });
 
 });
