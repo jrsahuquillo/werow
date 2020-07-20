@@ -19,7 +19,7 @@ class AddBoatForm extends Component {
   handleInput = () => {
     this.setState({
       name: this.nameRef.current.value,
-      rowers: parseInt(this.rowersRef.current.value) || '',
+      rowers: parseInt(this.rowersRef.current.value) || 0,
       modality: this.modalityRef.current.value,
       helmsman: this.helmsmanRef.current.checked
     })
@@ -55,11 +55,11 @@ class AddBoatForm extends Component {
           <div className="w-8/12 lg:w-4/12 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="name">Nombre</label>
             <input
+              type="text"
               name="name"
               id="name"
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
               ref={this.nameRef}
-              type="text"
               onChange={this.handleInput}
               value={this.state.name}
             />
@@ -68,11 +68,11 @@ class AddBoatForm extends Component {
           <div className="w-4/12 lg:w-2/12 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="rowers">Remeras/os</label>
             <input
+              type="number"
               name="rowers"
               id="rowers"
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
               ref={this.rowersRef}
-              type="text"
               onChange={this.handleInput}
               value={this.state.rowers}
             />
@@ -93,9 +93,9 @@ class AddBoatForm extends Component {
           <div className="w-4/12 lg:w-1/12 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="helmsman">¿Timonel?</label>
             <input
+              type="checkbox"
               name="helmsman"
               ref={this.helmsmanRef}
-              type="checkbox"
               id="helmsman"
               onChange={this.handleInput}
               checked={this.state.helmsman}
