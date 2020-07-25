@@ -7,7 +7,12 @@ class AddBoatForm extends Component {
       name: '',
       rowers: '',
       modality: '',
-      helmsman: false
+      helmsman: false,
+      formErrors: { name: '', rowers: '', modality: '' },
+      nameValid: false,
+      rowersValid: false,
+      modalityValid: false,
+      formValid: false
     };
   }
 
@@ -16,21 +21,77 @@ class AddBoatForm extends Component {
   helmsmanRef = React.createRef();
   modalityRef = React.createRef();
 
-  handleInput = () => {
+  handleInput = (e) => {
+    let fieldName = e.target.name;
+    let value;
+      switch(fieldName) {
+        case 'name':
+          value = this.nameRef.current.value;
+          break;
+        case 'rowers':
+          value = parseInt(this.rowersRef.current.value) || 1;
+          break;
+        case 'modality':
+          value = this.modalityRef.current.value;
+          break;
+        case 'helmsman':
+          value = this.helmsmanRef.current.checked;
+          break;
+        default:
+          break;
+      }
+    this.setState({ [fieldName]: value },
+      () => { this.validateField(fieldName, value) });
+
+    // this.setState({
+    //   name: this.nameRef.current.value,
+    //   rowers: parseInt(this.rowersRef.current.value) || 0,
+    //   modality: this.modalityRef.current.value,
+    //   helmsman: this.helmsmanRef.current.checked
+    // })
+
+  }
+
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let nameValid = this.state.nameValid;
+    let rowersValid = this.state.rowersValid;
+    let modalityValid = this.state.modalityValid;
+    switch (fieldName) {
+      case 'name':
+        nameValid = value.length > 0;
+        fieldValidationErrors.name = nameValid ? '' : ' is invalid';
+        break;
+      case 'rowers':
+        rowersValid = value > 0;
+        fieldValidationErrors.rowers = rowersValid ? '' : ' is invalid';
+        break;
+      case 'modality':
+        modalityValid = value.length > 0;
+        fieldValidationErrors.modality = modalityValid ? '' : ' is invalid';
+        break;
+      default:
+        break;
+    }
     this.setState({
-      name: this.nameRef.current.value,
-      rowers: parseInt(this.rowersRef.current.value) || 0,
-      modality: this.modalityRef.current.value,
-      helmsman: this.helmsmanRef.current.checked
-    })
+      formErrors: fieldValidationErrors,
+      nameValid: nameValid,
+      rowersValid: rowersValid,
+      modalityValid: modalityValid,
+    }, this.validateForm);
+    console.log(this);
+  }
+
+  validateForm() {
+    this.setState({ formValid: (this.state.nameValid && this.state.rowersValid && this.state.modalityValid) });
+  }
+
+  errorClass(error) {
+    return (error.length === 0 ? '' : 'has-error');
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    // if(this.state.rowers === '') {
-      //   // this.setState({rowers: 0});
-      //   this.state.rowers = 0;
-      // };
     this.props.onCreate(this.state);
     this.resetForm();
   }
@@ -40,20 +101,28 @@ class AddBoatForm extends Component {
       name: '',
       rowers: '',
       modality: '',
-      helmsman: false
+      helmsman: false,
+      formErrors: {
+        name: '',
+        rowers: '',
+        modality: ''
+      },
+      nameValid: false,
+      rowersValid: false,
+      modalityValid: false,
+      formValid: false
     })
   }
 
   render() {
     return (
-      
       <form id="add-boat-form"
         onSubmit={this.handleSubmit}
           className="w-full"
       >
         <div className="flex flex-wrap">
           <div className="w-8/12 lg:w-4/12 px-3">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="name">Nombre</label>
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold" htmlFor="name">Nombre</label>
             <input
               type="text"
               name="name"
@@ -62,6 +131,7 @@ class AddBoatForm extends Component {
               ref={this.nameRef}
               onChange={this.handleInput}
               value={this.state.name}
+              required
             />
           </div>
             
@@ -71,16 +141,26 @@ class AddBoatForm extends Component {
               type="number"
               name="rowers"
               id="rowers"
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
               ref={this.rowersRef}
               onChange={this.handleInput}
               value={this.state.rowers}
+              min="0"
+              required
             />
           </div>
 
           <div className="w-6/12 lg:w-3/12 px-3 relative">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="modality">Modalidad</label>
-            <select data-testid="modality" ref={this.modalityRef} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={this.handleInput} value={this.state.modality}>
+            <select
+              name="modality"
+              data-testid="modality"
+              ref={this.modalityRef}
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              onChange={this.handleInput}
+              value={this.state.modality}
+              required
+              >
               <option value="" disabled defaultValue>-</option>
               <option value="fijo">Banco Fijo</option>
               <option value="movil">Banco Móvil</option>
@@ -103,7 +183,11 @@ class AddBoatForm extends Component {
           </div>
 
           <div className="w-2/12 lg:w-2/12 px-3 py-5">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right" type="submit">
+            <button
+              className={`${this.state.formValid ? 'bg-blue-500 hover:bg-blue-700' : 'bg-blue-300 cursor-not-allowed'} text-white font-bold py-2 px-4 rounded float-right` }
+              type="submit"
+              disabled={!this.state.formValid}
+            >
               +
             </button>
           </div>
