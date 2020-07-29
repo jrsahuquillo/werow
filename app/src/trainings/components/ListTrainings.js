@@ -4,7 +4,7 @@ function ListTrainings({ trainings }) {
   const listTrainings = trainings.map((training, i) => {
     return <li className="collection-item pb-2" key={i}>
       <p>
-        <span>📆</span> {training.date} - <span>🕰</span> {training.time} - <span>🚣🏻‍♀️</span> {training.boat} - Nivel: {training.level}
+        {training.date} - {training.time} - {training.boat} - Nivel: {training.level}
       </p>
     </li>
   })
