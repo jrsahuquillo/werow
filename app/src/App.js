@@ -5,7 +5,7 @@ import Trainings from "./trainings"
 class App extends Component {
 
   state = {
-    text: <Boats />
+    text: <Trainings />
   }
 
   onClickBoatsButton = () => {

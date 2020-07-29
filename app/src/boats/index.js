@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ListBoats from './components/ListBoats'
 import AddBoatForm from './components/AddBoatForm'
+import ListBoats from './components/ListBoats'
 
 class Boats extends Component {
 

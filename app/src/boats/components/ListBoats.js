@@ -7,7 +7,7 @@ function ListBoats({boats}) {
       const modality = boat.modality === "fijo" ? "Banco Fijo" : "Banco Móvil"
       return <li className="collection-item pb-2" key={i}>
         <p>
-          {boat.name}
+          🚣🏻‍♀️ {boat.name}
           <span> -> {modality}</span>
           <span>( {boat.rowers} 👤 )</span>
           {needHelmsman ? (<span> -> Con Timonel</span>) : (<span> -> Sin Timonel</span>) }
