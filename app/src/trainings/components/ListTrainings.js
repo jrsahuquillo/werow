@@ -1,7 +1,8 @@
 import React from 'react';
 
 function ListTrainings({ trainings }) {
-  const listTrainings = trainings.map((training, i) => {
+  const sortedTrainings = trainings.sort((a, b) => (a.date > b.date) ? 1 : (a.date === b.date) ? ((a.time > b.time) ? 1 : -1) : -1)
+  const listTrainings = sortedTrainings.map((training, i) => {
     return <li className="collection-item pb-2" key={i}>
       <p>
         {training.date} - {training.time} - {training.boat} - Nivel: {training.level}
